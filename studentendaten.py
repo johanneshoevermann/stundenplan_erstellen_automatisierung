@@ -2,6 +2,8 @@ from datetime import time
 from studenten import Student
 
 # Liste der Studierenden mit genauen Zeitfenstern (Stunden und Minuten)
+# "Verfügbare Zeiten" ist ein Dictionary
+
 student1 = Student("Max Mustermann", {
     "Montag": [(time(9, 0), time(10, 15)), (time(14, 0), time(15, 45))],
     "Dienstag": [(time(10, 15), time(12, 0))],
