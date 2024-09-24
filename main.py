@@ -1,89 +1,85 @@
+import datetime
 from studentendaten import *
 from dozentendaten import *
-import datetime
-
-
-def wer_hat_wann_zeit():
-    for dozent in dozenten_liste:
-        for x in dozent.verfuegbare_zeiten:
-            print(f"{dozent.name}, Zeiten {x}: {
-                  dozent.verfuegbare_zeiten[x]}\n")
-            print(f"Folgende Studenten haben ebenfalls am {x} Zeit: ")
-            for student in studenten_liste:
-                try:
-                    print(f"{student.name}, Zeiten {x}: {
-                        student.verfuegbare_zeiten[x]}")
-                except:
-                    pass
-            print("\n")
-        print("\n\n\n")
-
-
-# wer_hat_wann_zeit()
-
-# for intervall in dozent1.verfuegbare_zeiten["Montag"]:
-    print(intervall)
-
-
-# tstart = datetime.time(9, 0)
-# tend = datetime.time(13, 0)
-# interval = datetime.timedelta(minutes=30)
+from timefunctions import convert_time_to_datetime, get_intervals
+from dozentenintervalle import Vierergruppen
 
 # periods = []
 
-# period_start = tstart
-# while period_start < tend:
-#     print(period_start)
-#     newTime = period_start + interval
-#     period_end = min(period_start + interval, tend)
-#     periods.append((period_start, period_end))
-#     period_start = period_end
 
-# print(periods)
-
-# date_and_time = datetime.datetime(2021, 8)
-# print("Original time:")
-# print(date_and_time)
-
-# # Calling the timedelta() function
-# time_change = datetime.timedelta(minutes=75)
-# new_time = date_and_time + time_change
-
-# # Printing the new datetime object
-# print("changed time:")
-# print(new_time)
-
-tstart = datetime.time(9, 0)
-tend = datetime.time(13, 0)
+# def wer_hat_wann_zeit():
+#     for dozent in dozenten_liste:
+#         for x in dozent.verfuegbare_zeiten:
+#             print(f"{dozent.name}, Zeiten {x}: {
+#                   dozent.verfuegbare_zeiten[x]}\n")
+#             print(f"Folgende Studenten haben ebenfalls am {x} Zeit: ")
+#             for student in studenten_liste:
+#                 try:
+#                     print(f"{student.name}, Zeiten {x}: {
+#                         student.verfuegbare_zeiten[x]}")
+#                 except:
+#                     pass
+#             print("\n")
+#         print("\n\n\n")
 
 
-def convert_time_to_datetime(time):
-    date = datetime.date.today()
-    print(date)
-    date_time = datetime.datetime.combine(date, time)
-    return (date_time)
+# # diese Zeiten sollen später aus einem anderen File kommen. Die sind hier nur solange ich die Funktionen hier schreibe.
+# tstart = datetime.time(9, 0)
+# tend = datetime.time(13, 0)
 
 
-# convert_time_to_datetime(tstart)
-
-def get_intervals(start, end, interval):
-    tstart = start
-    tend = end
-    tinterval = datetime.timedelta(minutes=interval)
-
-    periods = []
-
-    period_start = tstart
-    while period_start < tend:
-        period_end = min(period_start + tinterval, tend)
-        periods.append((period_start, period_end))
-        period_start = period_end
-
-    print(periods)
+# def convert_time_to_datetime(time):
+#     date = datetime.date.today()
+#     print(date)
+#     date_time = datetime.datetime.combine(date, time)
+#     return (date_time)
 
 
-new_start = convert_time_to_datetime(tstart)
-new_end = convert_time_to_datetime(tend)
+# def get_intervals(start, end, interval):
+#     tstart = start
+#     tend = end
+#     tinterval = datetime.timedelta(minutes=interval)
+
+#     period_start = tstart
+#     while period_start < tend:
+#         period_end = min(period_start + tinterval, tend)
+#         periods.append((period_start, period_end))
+#         period_start = period_end
+
+#     return periods
 
 
-get_intervals(new_start, new_end, 30)
+# new_start = convert_time_to_datetime(tstart)
+# new_end = convert_time_to_datetime(tend)
+
+
+# get_intervals(new_start, new_end, 15)
+
+
+# def Vierergruppen(list):
+#     gruppen = []
+
+#     for i in range(0, len(list), 1):
+#         gruppen.append(list[i:i+4])
+
+#     return gruppen
+
+
+# gruppen = Vierergruppen(periods)
+
+# for gruppe in gruppen:
+#     print(f"\n{gruppe}")
+
+# bei mehreren Zeitfenstern gibt es hier wohl ein problem da die Varaiablen überschireben werden.
+for entry in dozent1.verfuegbare_zeiten["Montag"]:
+    anfangszeit, endzeit = entry
+
+tstart = convert_time_to_datetime(anfangszeit)
+tend = convert_time_to_datetime(endzeit)
+
+periods = get_intervals(tstart, tend, 15)
+
+gruppen = Vierergruppen(periods)
+
+for gruppe in gruppen:
+    print(f"\n{gruppe}")
