@@ -1,7 +1,5 @@
 import datetime
 
-periods = []
-
 
 def convert_time_to_datetime(time):
     date = datetime.date.today()
@@ -10,6 +8,7 @@ def convert_time_to_datetime(time):
 
 
 def get_intervals(start, end, interval):
+    periods = []
     tstart = start
     tend = end
     tinterval = datetime.timedelta(minutes=interval)
