@@ -1,4 +1,3 @@
-from dozentendaten import *
 
 
 def Vierergruppen(list):
