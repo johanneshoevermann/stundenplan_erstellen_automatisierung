@@ -1,5 +1,3 @@
-
-
 def Vierergruppen(list):
     gruppen = []
 
