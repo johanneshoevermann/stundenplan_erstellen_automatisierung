@@ -1,5 +1,5 @@
 from datetime import time
-from studenten import Student
+from personenklassen import Student
 
 # Liste der Studierenden mit genauen Zeitfenstern (Stunden und Minuten)
 # "Verfügbare Zeiten" ist ein Dictionary
