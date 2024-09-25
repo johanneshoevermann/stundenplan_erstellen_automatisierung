@@ -1,10 +1,14 @@
-class Student:
-    def __init__(self, name, verfuegbare_zeiten, unterrichtsdauer):
+class Person:
+    def __init__(self, name, verfuegbare_zeiten):
         self.name = name
         self.verfuegbare_zeiten = verfuegbare_zeiten
+
+
+class Student(Person):
+    def __init__(self, name, verfuegbare_zeiten, unterrichtsdauer):
+        super().__init__(name, verfuegbare_zeiten)
         self.unterrichtsdauer = unterrichtsdauer
 
-    # Methode, um eine gut lesbare Repräsentation eines Objektes der Klasse ausgeben zu können. Dient mir, dem Entwickler, um einfach sehen zu können, welche Daten in einem Objekt enthalten sind.
 
-    def __repr__(self):
-        return f"Student({self.name}. {self.verfuegbare_zeiten}, {self.unterrichtsdauer} Minuten)"
+class Dozent(Person):
+    pass
