@@ -1,5 +1,5 @@
 from datetime import time
-from dozenten import Dozent
+from personenklassen import Dozent
 
 # Liste der Dozierenden mit genauen Zeitfenstern (Stunden und Minuten)
 dozent1 = Dozent("Herr Müller", {
