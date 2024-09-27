@@ -59,21 +59,24 @@ class Student(Person):
         self.unterrichtsdauer = unterrichtsdauer
 
     def get_time_tupel(self, tag):
-        for entry in self.verfuegbare_zeiten[tag]:
-            anfangszeit, endzeit = entry
-            tstart = self.convert_time_to_datetime(anfangszeit)
-            tend = self.convert_time_to_datetime(endzeit)
+        try:
+            for entry in self.verfuegbare_zeiten[tag]:
+                anfangszeit, endzeit = entry
+                tstart = self.convert_time_to_datetime(anfangszeit)
+                tend = self.convert_time_to_datetime(endzeit)
 
-            periods = self.get_intervals(tstart, tend, 15)
+                periods = self.get_intervals(tstart, tend, 15)
 
-            if self.unterrichtsdauer == 30:
-                return self.Zweiergruppen(periods)
-            elif self.unterrichtsdauer == 45:
-                return self.Dreiergruppen(periods)
-            elif self.unterrichtsdauer == 60:
-                return self.Vierergruppen(periods)
-            else:
-                return "Fehler: keine sinvolle Unterrichtslänge vom Studenten angegeben."
+                if self.unterrichtsdauer == 30:
+                    return self.Zweiergruppen(periods)
+                elif self.unterrichtsdauer == 45:
+                    return self.Dreiergruppen(periods)
+                elif self.unterrichtsdauer == 60:
+                    return self.Vierergruppen(periods)
+                else:
+                    return "Fehler: keine sinvolle Unterrichtslänge vom Studenten angegeben."
+        except:
+            print("Student hat keine verfügbarkeiten an diesem Tag.")
 
 
 class Dozent(Person):
